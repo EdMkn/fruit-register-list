@@ -33,7 +33,7 @@ def get_fruits():
 @app.post("/fruits", response_model=Fruits)
 def add_fruit(fruit: Fruit):
     memory_db["fruits"].append(fruit)
-    return fruit
+    return Fruits(fruits=memory_db["fruits"])
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0",port=8000)
