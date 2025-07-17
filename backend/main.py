@@ -13,7 +13,9 @@ class Fruits(BaseModel):
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",           # dev local hors Docker
+    #"http://fruits-frontend:3000"      # depuis Docker Compose
+    "http://localhost:3000"            # frontend via Docker Compose on host
 ]
 
 app.add_middleware(
@@ -35,5 +37,6 @@ def add_fruit(fruit: Fruit):
     memory_db["fruits"].append(fruit)
     return Fruits(fruits=memory_db["fruits"])
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0",port=8000)
+#if __name__ == "__main__":
+#   uvicorn.run(app, host="0.0.0.0",port=8000)
+#*/
